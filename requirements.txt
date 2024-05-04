@@ -1,0 +1,10 @@
+gunicorn
+ultralytics
+PIL
+flask
+YOLO
+os
+cv2
+numpy
+
+
