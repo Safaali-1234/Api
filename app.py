@@ -8,7 +8,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 cors = CORS(app, resources={r"/": {"origins": ""}})
 def predict_disease(image_path):
-    model = YOLO('./runs/classify/train/weights/best.pt')
+    model = YOLO('./runs/classify/train3/weights/best.pt')
     with Image.open(image_path) as img:
         img = img.resize((255, 255))
     results = model(img, show=True)
@@ -18,10 +18,10 @@ def predict_disease(image_path):
     print(max(probs))
     if max(probs) < 0.99:
        prediction = None
-       return "You don't have any disease"
+       return "Non-diseased skin"
     else:
         prediction = names_dict[probs.index(max(probs))]
-        return f'We regret to inform you that you have {prediction} disease '
+        return f' you have {prediction} disease '
 
 @app.route('/')
 def index():
